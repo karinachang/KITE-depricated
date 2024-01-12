@@ -1,0 +1,131 @@
+.upload-container {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  background-color: #01d0ff;
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 3px;
+  box-shadow: inset 0 1px 3px rgba(255, 0, 0, 0.2);
+}
+
+.progress {
+  background-color: #87CEEB; /* Sky blue color */
+  height: 20px;
+  border-radius: 15px;
+  transition: width 0.4s ease;
+  line-height: 20px; /* Align text vertically */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 0%; /* Start with 0% width */
+}
+
+.progress::after {
+  content: "Uploading...";
+  position: relative;
+  white-space: nowrap;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.upload-message {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #333; /* Dark grey for readability */
+  background-color: #f8f8f8; /* Light background */
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.progress-complete::after {
+  content: "Uploaded.";
+}
+
+
+.code-box {
+  background-color: #e8e8e8;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.button-container button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #87CEEB; /* Sky blue color */
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+  background-color: #6495ED; /* A slightly darker sky blue */
+}
+
+/* QR Code styling */
+.qr-code-container {
+  margin-top: 20px;
+}
+
+.qr-code-container canvas {
+  border: 5px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kite-link {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 40px; /* Adjust size as needed */
+  color: #00bfff; /* Adjust color as needed */
+  text-decoration: none; /* Optional: to remove the underline from the link */
+}
+
+.Upload-button {
+  background-color: #007BFF;
+  position: absolute;
+  top: 50px;
+  right: 50px; /* Adjust as needed for right-side margin */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

@@ -1,0 +1,81 @@
+body {
+  background-color: #F0F0F0;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.App-logo {
+  font-size: 2em;
+  color: #000080;
+}
+
+.Upload-button {
+  background-color: #007BFF;
+  position: absolute;
+  top: 50px;
+  right: 50px; /* Adjust as needed for right-side margin */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.App-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 140px);
+}
+
+.code-input-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.code-input-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.code-input-field {
+  font-size: 18px;
+  letter-spacing: 10px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #000080;
+  border-radius: 5px;
+  width: calc(100% - 24px);
+}
+
+button.access-file-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.kite-link {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 40px;
+  color: #00bfff;
+  text-decoration: none;
+}

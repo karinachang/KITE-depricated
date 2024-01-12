@@ -1,0 +1,260 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ececec;
+}
+
+.upload-container {
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop-zone {
+  border: 2px dashed #69b3e7;
+  border-radius: 10px;
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.drop-zone.active {
+  background-color: #e8f6fd;
+}
+
+.drop-message {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  color: #333;
+}
+
+.upload-link {
+  color: #69b3e7;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.file-input {
+  position: relative;
+  top: 100;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-display-container {
+  width: 100%;
+  height: 500px;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  min-height: 100px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.file-status-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.file-status-bar input[type="checkbox"] {
+  margin-right: 10px; /* Space between checkbox and file name */
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.file-name {
+  flex-grow: 1; /* Allows file name to take up available space */
+  padding-right: 10px; /* Padding on the right side of the file name */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  color: #7b6f6f;
+  /* No margin-left needed; it's positioned automatically to the right */
+  padding-left: auto; /* Padding on the left side of the file size */
+  padding-right: 15px;
+}
+
+.select-all {
+  display: flex; /* Aligns items in a row */
+  align-items: center; /* Vertically aligns items in the flex container */
+  margin-top: 30px;
+  padding-left: 20px; /* Aligns with the padding of file-status-bar */
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #69b3e7;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #578abd;
+}
+
+/* Additional styling for checkboxes */
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.totalsize {
+    margin-top: 2%;
+    color: rgb(94, 90, 90);
+    position: relative;
+}
+
+.settings-container {
+  width: 90%; /* Adjust the width as necessary */
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff; /* Background color for the settings area */
+  border: 1px solid #ddd; /* Border to match the file display container */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow to match the upload container */
+}
+
+.setting {
+  margin-bottom: 10px; /* Space between settings */
+}
+
+.setting label {
+  font-size: 14px;
+  color: #333; /* Label color */
+  margin-bottom: 5px; /* Space between label and input/select */
+}
+
+.setting select,
+.setting input[type="text"],
+.setting input[type="password"],
+.setting button {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd; /* Border color */
+  border-radius: 4px;
+  margin-bottom: 5px; /* Space between input/select and the next setting */
+}
+
+/* Styling for the peek button */
+.setting button {
+  width: auto; /* Auto width to fit content */
+  padding: 6px 12px; /* Smaller padding for the button */
+  background-color: #69b3e7; /* Button color to match the theme */
+  color: white;
+  text-align: center;
+  display: inline-block; /* Make the button inline */
+  cursor: pointer;
+  margin-top: 5px; /* Space between password field and button */
+}
+
+/* Styling for the radio buttons and their labels */
+.setting input[type="radio"] {
+  margin-right: 10px;
+}
+
+.setting input[type="radio"] + label {
+  margin-right: 20px; /* Space between the radio button and label */
+  cursor: pointer;
+}
+
+/* Adjust the file display container height if needed */
+.file-display-container {
+  max-height: 300px; /* Adjust height based on your design needs */
+  overflow-y: auto; /* Scrollbar as needed for overflow */
+}
+
+/* Additional hover effect for interactivity */
+.setting button:hover {
+  background-color: #578abd; /* Darker shade on hover */
+}
+
+/* Ensure the button inside the settings does not stretch */
+.setting button {
+  width: auto;
+  margin: 0;
+}
+
+/* Container for the password input and the peek button */
+.password-container {
+  position: relative; /* Set the position context for absolute positioning */
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the password input */
+.password-input {
+  padding-right: 60px; /* Add padding to prevent text from being hidden behind the button */
+  width: 100%; /* Full width */
+  /* Other styling as before */
+}
+
+/* Style for the peek button */
+.peek-button {
+  position: absolute; /* Position the button absolutely within .password-container */
+  right: 0px; /* Distance from the right edge */
+  top: 45%; /* Start at 50% from the top */
+  transform: translateY(-50%); /* Adjust vertical position to center */
+  padding: 6px 12px; /* Padding inside the button */
+  margin: 0;
+}
+
+.total-size-color {
+    color: rgb(0, 4, 255);
+}
+
+.kite-link {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 40px; /* Adjust size as needed */
+  color: #00bfff; /* Adjust color as needed */
+  text-decoration: none; /* Optional: to remove the underline from the link */
+}
+
+.Upload-button {
+  background-color: #007BFF;
+  position: absolute;
+  top: 50px;
+  right: 50px; /* Adjust as needed for right-side margin */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
