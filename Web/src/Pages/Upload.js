@@ -180,37 +180,96 @@ function Upload() {
     "DAA",
   ];
 
+  const getFileIconURL = (filename) => {
+    const extension = filename.split(".").pop().toUpperCase();
+
+    if (compressedFileExtensions.includes(extension)) {
+      return process.env.PUBLIC_URL + "/Images/File-Icons/COMPRESSED.png";
+    } else {
+      const iconFileName = fileIcons[extension] || fileIcons["DEFAULT"];
+      return process.env.PUBLIC_URL + "/Images/File-Icons/" + iconFileName;
+    }
+  };
+
   const handleFiles = (newFiles) => {
     const mappedFiles = Array.from(newFiles).map((file) => {
-      let previewURL = null;
-
-      if (file.type.startsWith("image/")) {
-        previewURL = URL.createObjectURL(file);
-      } else {
-        const extension = file.name.split(".").pop().toUpperCase();
-
-        if (compressedFileExtensions.includes(extension)) {
-          previewURL =
-            process.env.PUBLIC_URL + "/Images/File-Icons/COMPRESSED.png";
+      return new Promise((resolve) => {
+        if (file.type.startsWith("image/")) {
+          // Image files
+          const previewURL = URL.createObjectURL(file);
+          resolve(createFileObject(file, previewURL));
+        } else if (file.type.startsWith("video/")) {
+          // Video files
+          extractVideoThumbnail(file).then((previewURL) => {
+            resolve(createFileObject(file, previewURL));
+          });
         } else {
-          const iconFileName = fileIcons[extension] || fileIcons["DEFAULT"];
-          previewURL =
-            process.env.PUBLIC_URL + "/Images/File-Icons/" + iconFileName;
+          // Other file types
+          const previewURL = getFileIconURL(file.name);
+          resolve(createFileObject(file, previewURL));
         }
-      }
-
-      return {
-        name: file.name,
-        size: formatBytes(file.size),
-        sizeInBytes: file.size,
-        selected: false,
-        previewURL,
-      };
+      });
     });
 
     Promise.all(mappedFiles).then((result) => {
       setFiles((prevFiles) => [...prevFiles, ...result]);
     });
+  };
+
+  const extractVideoThumbnail = (file) => {
+    return new Promise((resolve) => {
+      const videoElement = document.createElement("video");
+      videoElement.src = URL.createObjectURL(file);
+      videoElement.muted = true;
+      videoElement.play();
+
+      videoElement.addEventListener("seeked", () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        const context = canvas.getContext("2d");
+
+        // Draw the video frame
+        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        // Draw the play button
+        drawPlayButton(context, canvas.width, canvas.height);
+
+        canvas.toBlob((blob) => {
+          resolve(URL.createObjectURL(blob));
+        });
+
+        videoElement.src = ""; // Clean up
+      });
+
+      videoElement.currentTime = 1; // Seek to a second into the video
+    });
+  };
+
+  const drawPlayButton = (context, width, height) => {
+    context.fillStyle = "rgba(0, 0, 0, 0.3)"; // Semi-transparent black
+    context.fillRect(0, 0, width, height); // Cover the entire thumbnail
+
+    context.fillStyle = "#FFFFFF"; // White color for the play symbol
+    const triangleSize = width / 8; // Adjust the size of the play symbol
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    context.beginPath();
+    context.moveTo(centerX - triangleSize / 2, centerY - triangleSize / 2);
+    context.lineTo(centerX + triangleSize / 2, centerY);
+    context.lineTo(centerX - triangleSize / 2, centerY + triangleSize / 2);
+    context.fill();
+  };
+
+  const createFileObject = (file, previewURL) => {
+    return {
+      name: file.name,
+      size: formatBytes(file.size),
+      sizeInBytes: file.size,
+      selected: false,
+      previewURL,
+    };
   };
 
   const toggleFileSelection = (index) => {
