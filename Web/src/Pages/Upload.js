@@ -10,7 +10,6 @@ function Upload() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-
   useEffect(() => {
     const preventDefault = (e) => {
       e.preventDefault();
@@ -79,16 +78,125 @@ function Upload() {
     }
   };
 
+  const fileIcons = {
+    "3GP": "3GP.png",
+    AI: "AI.png",
+    APK: "APK.png",
+    AVI: "AVI.png",
+    BIN: "BIN.png",
+    BMP: "BMP.png",
+    C: "C.png",
+    CDR: "CDR.png",
+    CPP: "CPP.png",
+    CS: "CS.png",
+    CSS: "CSS.png",
+    DMG: "DMG.png",
+    DMP: "DMP.png",
+    DOC: "DOC.png",
+    DOCX: "DOCX.png",
+    EPS: "EPS.png",
+    EPUB: "EPUB.png",
+    EXE: "EXE.png",
+    FLAC: "FLAC.png",
+    GIF: "GIF.png",
+    H: "H.png",
+    HEIC: "HEIC.png",
+    HTML: "HTML.png",
+    ICO: "ICO.png",
+    ISO: "ISO.png",
+    JAR: "JAR.png",
+    JAVA: "JAVA.png",
+    JS: "JS.png",
+    M4A: "M4A.png",
+    MKV: "MKV.png",
+    MOV: "MOV.png",
+    MP3: "MP3.png",
+    MP4: "MP4.png",
+    MSI: "MSI.png",
+    OGG: "OGG.png",
+    OTF: "OTF.png",
+    PDF: "PDF.png",
+    PHP: "PHP.png",
+    PPT: "PPT.png",
+    PPTX: "PPTX.png",
+    PRPROJ: "PRPROJ.png",
+    PSD: "PSD.png",
+    PY: "PY.png",
+    RAR: "RAR.png",
+    RSS: "RSS.png",
+    RTF: "RTF.png",
+    SH: "SH.png",
+    SVG: "SVG.png",
+    TAR: "TAR.png",
+    TIFF: "TIFF.png",
+    TTF: "TTF.png",
+    TXT: "TXT.png",
+    VB: "VB.png",
+    WAV: "WAV.png",
+    WMA: "WMA.png",
+    WMV: "WMV.png",
+    WSF: "WSF.png",
+    XHTML: "XHTML.png",
+    XLS: "XLS.png",
+    XLSM: "XLSM.png",
+    XLSX: "XLSX.png",
+    XML: "XML.png",
+    COMPRESSED: "COMPRESSED.png",
+    // Default icon for unlisted file types
+    DEFAULT: "FILE.png",
+  };
+
+  const compressedFileExtensions = [
+    "7Z",
+    "ZIP",
+    "GZ",
+    "BZ2",
+    "LZ",
+    "LZMA",
+    "LZO",
+    "XZ",
+    "Z",
+    "ZST",
+    "ARJ",
+    "TAR.GZ",
+    "TGZ",
+    "TAR.BZ2",
+    "TBZ",
+    "TBZ2",
+    "TAR.LZ",
+    "TLZ",
+    "TAR.LZMA",
+    "TAR.LZO",
+    "TAR.XZ",
+    "TXZ",
+    "TAR.Z",
+    "TAR.ZST",
+    "WAR",
+    "EAR",
+    "PKG",
+    "DEB",
+    "RPM",
+    "VHD",
+    "DAA",
+  ];
+
   const handleFiles = (newFiles) => {
-    const mappedFiles = Array.from(newFiles).map(async (file) => {
+    const mappedFiles = Array.from(newFiles).map((file) => {
       let previewURL = null;
 
       if (file.type.startsWith("image/")) {
-        // For image files, create a preview URL directly
         previewURL = URL.createObjectURL(file);
       } else {
-        // For other file types, you can display a generic file icon or placeholder image
-        previewURL = "/path-to-generic-icon.png"; // Replace with the actual path
+        const extension = file.name.split(".").pop().toUpperCase();
+
+        if (compressedFileExtensions.includes(extension)) {
+          previewURL =
+            process.env.PUBLIC_URL + "/Images/File-Icons/COMPRESSED.png";
+        } else {
+          const iconFileName = fileIcons[extension] || fileIcons["DEFAULT"];
+          previewURL =
+            process.env.PUBLIC_URL + "/Images/File-Icons/" + iconFileName;
+        }
       }
 
       return {
@@ -104,9 +212,6 @@ function Upload() {
       setFiles((prevFiles) => [...prevFiles, ...result]);
     });
   };
-
-
-  
 
   const toggleFileSelection = (index) => {
     setFiles((prevFiles) =>
@@ -153,8 +258,6 @@ function Upload() {
       alert("Please select at least one file to upload.");
     }
   };
-
-
 
   const settingsBox = files.length > 0 && (
     <div className="settings-container">
