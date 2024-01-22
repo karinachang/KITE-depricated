@@ -143,7 +143,7 @@ function Upload() {
     XML: "XML.png",
     COMPRESSED: "COMPRESSED.png",
     // Default icon for unlisted file types
-    DEFAULT: "FILE.png",
+    DEFAULT: "FILE.png"
   };
 
   const compressedFileExtensions = [
@@ -182,12 +182,11 @@ function Upload() {
 
   const getFileIconURL = (filename) => {
     const extension = filename.split(".").pop().toUpperCase();
-
     if (compressedFileExtensions.includes(extension)) {
-      return process.env.PUBLIC_URL + "/Images/File-Icons/COMPRESSED.png";
+      return window.location.origin + '/images/COMPRESSED.png';
     } else {
       const iconFileName = fileIcons[extension] || fileIcons["DEFAULT"];
-      return process.env.PUBLIC_URL + "/Images/File-Icons/" + iconFileName;
+      return window.location.origin + '/images/' + iconFileName;
     }
   };
 
@@ -206,6 +205,7 @@ function Upload() {
         } else {
           // Other file types
           const previewURL = getFileIconURL(file.name);
+          console.log(previewURL);
           resolve(createFileObject(file, previewURL));
         }
       });
@@ -268,7 +268,7 @@ function Upload() {
       size: formatBytes(file.size),
       sizeInBytes: file.size,
       selected: false,
-      previewURL,
+      previewURL: previewURL
     };
   };
 
