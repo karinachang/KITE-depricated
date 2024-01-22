@@ -15,7 +15,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/uploaded" element={<Uploaded />} />
-          <Route path="/Access" element={<Access />} />
+          <Route path="/access" element={<Access />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>

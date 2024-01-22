@@ -100,7 +100,7 @@ function Access() {
           KITE
         </a>
         <button
-          onClick={() => (window.location.href = "./Upload")}
+          onClick={() => (window.location.href = "./upload")}
           className="Upload-button"
         >
           Upload

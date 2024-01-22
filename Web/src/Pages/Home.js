@@ -11,7 +11,7 @@ function Home() {
   useEffect(() => {
     if (redirect) {
       const timer = setTimeout(() => {
-        window.location.href = "./Access";
+        window.location.href = "./access";
       }, 2000);
 
       return () => clearTimeout(timer); // Cleanup the timer on component unmount
@@ -43,64 +43,64 @@ function Home() {
   };
 
   return (
-  <div className="App">
-    <header className="App-header">
-      <a href="./home" className="kite-link">
-        KITE
-      </a>
-      <button
-        onClick={() => (window.location.href = "./Upload")}
-        className="Upload-button"
-      >
-        Upload
-      </button>
-    </header>
+    <div className="App">
+      <header className="App-header">
+        <a href="./home" className="kite-link">
+          KITE
+        </a>
+        <button
+          onClick={() => (window.location.href = "./upload")}
+          className="Upload-button"
+        >
+          Upload
+        </button>
+      </header>
 
-    <main className="App-main">
-      {!isCodeValid ? (
-        <div className="code-input-container">
-          <label htmlFor="code-input" className="code-input-label">
-            Enter your 6-digit code:
-          </label>
-          <input
-            id="code-input"
-            className="code-input-field"
-            type="text"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            maxLength={6}
-          />
-          <div className="dashed-line"></div>
-          <button className="access-file-button" onClick={handleCodeSubmit}>
-            ACCESS FILE
-          </button>
-        </div>
-      ) : passwordRequired ? (
-        <div className="password-input-container">
-          <label htmlFor="password-input" className="password-input-label">
-            Enter your password:
-          </label>
-          <input
-            id="password-input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button
-            className="access-file-button"
-            onClick={handlePasswordSubmit}
-          >
-            ACCESS FILE
-          </button>
-        </div>
-      ) : (
-        <div className="file-accessing-container">
-          <p>Accessing your file...</p>
-        </div>
-      )}
-    </main>
-  </div>
-);
-      }
+      <main className="App-main">
+        {!isCodeValid ? (
+          <div className="code-input-container">
+            <label htmlFor="code-input" className="code-input-label">
+              Enter your 6-digit code:
+            </label>
+            <input
+              id="code-input"
+              className="code-input-field"
+              type="text"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              maxLength={6}
+            />
+            <div className="dashed-line"></div>
+            <button className="access-file-button" onClick={handleCodeSubmit}>
+              ACCESS FILE
+            </button>
+          </div>
+        ) : passwordRequired ? (
+          <div className="password-input-container">
+            <label htmlFor="password-input" className="password-input-label">
+              Enter your password:
+            </label>
+            <input
+              id="password-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              className="access-file-button"
+              onClick={handlePasswordSubmit}
+            >
+              ACCESS FILE
+            </button>
+          </div>
+        ) : (
+          <div className="file-accessing-container">
+            <p>Accessing your file...</p>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
 
 export default Home;
