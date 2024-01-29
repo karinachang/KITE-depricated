@@ -1,12 +1,3 @@
-body, html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ececec;
-}
-
 .upload-container {
   width: 80%;
   max-width: 600px;
@@ -236,25 +227,3 @@ input[type="checkbox"] {
 .total-size-color {
     color: rgb(0, 4, 255);
 }
-
-.kite-link {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  font-size: 40px; /* Adjust size as needed */
-  color: #00bfff; /* Adjust color as needed */
-  text-decoration: none; /* Optional: to remove the underline from the link */
-}
-
-.Upload-button {
-  background-color: #007BFF;
-  position: absolute;
-  top: 50px;
-  right: 50px; /* Adjust as needed for right-side margin */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-

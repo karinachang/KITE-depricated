@@ -1,8 +1,10 @@
-body {
-  background-color: #F0F0F0;
-  font-family: 'Arial', sans-serif;
+body, html {
+  height: 100%;
   margin: 0;
-  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-header {
@@ -10,6 +12,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  background-color: transparent;
 }
 
 .App-logo {
@@ -18,7 +21,7 @@ body {
 }
 
 .Upload-button {
-  background-color: #007BFF;
+  background-color: #905CF7;
   position: absolute;
   top: 50px;
   right: 50px; /* Adjust as needed for right-side margin */
@@ -29,18 +32,19 @@ body {
   cursor: pointer;
 }
 
-
 .App-main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: calc(100vh - 140px);
+  background-color: transparent;
 }
 
 .code-input-container {
   text-align: center;
   margin-top: 30px;
+  background-color: transparent;
 }
 
 .code-input-label {
@@ -48,6 +52,7 @@ body {
   margin-bottom: 10px;
   font-size: 18px;
   color: #333;
+  background-color: transparent;
 }
 
 .code-input-field {
@@ -59,10 +64,11 @@ body {
   border: 2px solid #000080;
   border-radius: 5px;
   width: calc(100% - 24px);
+  background-color: transparent;
 }
 
 button.access-file-button {
-  background-color: #007BFF;
+  background-color: #905CF7;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -76,6 +82,6 @@ button.access-file-button {
   top: 50px;
   left: 50px;
   font-size: 40px;
-  color: #00bfff;
+  color: white;
   text-decoration: none;
 }

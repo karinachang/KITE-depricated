@@ -107,25 +107,3 @@
   border: 5px solid white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.kite-link {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  font-size: 40px; /* Adjust size as needed */
-  color: #00bfff; /* Adjust color as needed */
-  text-decoration: none; /* Optional: to remove the underline from the link */
-}
-
-.Upload-button {
-  background-color: #007BFF;
-  position: absolute;
-  top: 50px;
-  right: 50px; /* Adjust as needed for right-side margin */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
