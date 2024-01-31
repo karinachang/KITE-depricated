@@ -72,16 +72,17 @@ function Home() {
             />
             <div className="dashed-line"></div>
             <button className="access-file-button" onClick={handleCodeSubmit}>
-              ACCESS FILE
+              ACCESS FILES
             </button>
           </div>
         ) : passwordRequired ? (
           <div className="password-input-container">
-            <label htmlFor="password-input" className="password-input-label">
-              Enter your password:
+            <label htmlFor="password-input" className="code-input-label">
+              Enter password:
             </label>
             <input
               id="password-input"
+              className="code-input-field"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -90,12 +91,12 @@ function Home() {
               className="access-file-button"
               onClick={handlePasswordSubmit}
             >
-              ACCESS FILE
+              ACCESS FILES
             </button>
           </div>
         ) : (
           <div className="file-accessing-container">
-            <p>Accessing your file...</p>
+            <p>Accessing your files...</p>
           </div>
         )}
       </main>

@@ -113,7 +113,7 @@ function Access() {
         onChange={(e) => setAccessNumber(e.target.value)}
         maxLength={6}
       />
-      <button className="access-button">ACCESS FILE</button>
+      <button className="access-button">ACCESS FILES</button>
       <div className="file-list">
         <div className="file-item select-all">
           <input

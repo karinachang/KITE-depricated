@@ -51,8 +51,10 @@ body, html {
   display: block;
   margin-bottom: 10px;
   font-size: 18px;
-  color: #333;
+  color: black;
   background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 .code-input-field {
@@ -61,9 +63,9 @@ body, html {
   text-align: center;
   padding: 10px;
   margin-bottom: 20px;
-  border: 2px solid #000080;
+  border: 2px solid black;
   border-radius: 5px;
-  width: calc(100% - 24px);
+  width: 15vw;
   background-color: transparent;
 }
 
