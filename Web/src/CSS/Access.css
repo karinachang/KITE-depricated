@@ -44,8 +44,8 @@
 }
 
 .download-button:hover {
-  background-color: #905CF7;
-  border: 2px solid #905CF7;
+  background-color: #A3004E;
+  border: 2px solid #A3004E;
   color: white;
 }
 
@@ -61,19 +61,18 @@
   justify-content: space-between;
   padding: 15px;
   margin: 10px 0;
-background-color: #fff;
-border: 1px solid #eaeaea;
-border-radius: 10px;
-transition: box-shadow 0.3s ease;
-}
-
-.file-item:hover {
-box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .file-item input[type="checkbox"] {
-margin-right: 15px;
-cursor: pointer;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.checkbox {
+  background-color: transparent;
 }
 
 .file-info {
@@ -94,6 +93,13 @@ text-align: right;
   text-align: center; /* Center-aligns text inside the element */
   margin: 10px auto; /* Sets top/bottom margin to 10px and auto-aligns left and right margins */
   font-size: 18px;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+}
+
+.total-size-color {
+  color: #A3004E;
+  font-weight: bold;
 }
 
 .access-number-input {
@@ -115,7 +121,7 @@ text-align: right;
 
 .access-number-input:focus {
   outline: none; /* Removes the default focus outline */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adds a blue glow when focused */
+  border: 2px solid #905CF7;
 }
 
 /* Modal Overlay */

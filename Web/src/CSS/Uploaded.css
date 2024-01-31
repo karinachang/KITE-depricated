@@ -94,10 +94,6 @@
   transition: background-color 0.3s;
 }
 
-.button-container button:hover {
-  background-color: #6495ED; /* A slightly darker sky blue */
-}
-
 /* QR Code styling */
 .qr-code-container {
   margin-top: 20px;

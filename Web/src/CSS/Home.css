@@ -30,6 +30,11 @@ body, html {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+.Upload-button:hover {
+  background-color: #FF99E8;
 }
 
 .App-main {
@@ -77,6 +82,7 @@ button.access-file-button {
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 .kite-link {
