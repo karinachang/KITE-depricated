@@ -69,7 +69,9 @@ function Home() {
               value={code}
               onChange={(e) => setCode(e.target.value)}
               maxLength={6}
+              onKeyDown={(e) => e.key === "Enter" && handleCodeSubmit()}
             />
+
             <div className="dashed-line"></div>
             <button className="access-file-button" onClick={handleCodeSubmit}>
               ACCESS FILES
@@ -86,7 +88,9 @@ function Home() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handlePasswordSubmit()}
             />
+
             <button
               className="access-file-button"
               onClick={handlePasswordSubmit}
