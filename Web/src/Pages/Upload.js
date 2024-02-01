@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../CSS/Upload.css";
+import ImageModal from "../Components/DisplayModal.js";
 
 function Upload() {
   const [files, setFiles] = useState([]);
@@ -192,30 +191,56 @@ function Upload() {
   };
 
   const handleFiles = (newFiles) => {
-    const mappedFiles = Array.from(newFiles).map((file) => {
-      return new Promise((resolve) => {
-        if (file.type.startsWith("image/")) {
-          // Image files
-          const previewURL = URL.createObjectURL(file);
-          resolve(createFileObject(file, previewURL));
-        } else if (file.type.startsWith("video/") && !isSmallDevice()) {
-          // Video files (only if not a small device)
-          extractVideoThumbnail(file).then((previewURL) => {
-            resolve(createFileObject(file, previewURL));
-          });
-        } else {
-          // Other file types or small device
-          const previewURL = getFileIconURL(file.name);
-          console.log(previewURL);
-          resolve(createFileObject(file, previewURL));
+    Array.from(newFiles).forEach((file) => {
+      // Function to check and modify the filename if it's a duplicate
+      const getUniqueFileName = (originalFile) => {
+        let newName = originalFile.name;
+        let counter = 1;
+        while (files.some((f) => f.name === newName)) {
+          const extension = originalFile.name.split(".").pop();
+          const baseName = originalFile.name.replace(/\.[^/.]+$/, ""); // Remove extension
+          newName = `${baseName}(${counter}).${extension}`;
+          counter++;
         }
-      });
-    });
+        return newName;
+      };
 
-    Promise.all(mappedFiles).then((result) => {
-      setFiles((prevFiles) => [...prevFiles, ...result]);
+      // Create a new File object with a unique name if necessary
+      let newName = getUniqueFileName(file);
+      let fileWithUniqueName = file;
+      if (newName !== file.name) {
+        fileWithUniqueName = new File([file], newName, { type: file.type });
+      }
+
+      const previewURL = getFileIconURL(newName);
+      let newFileObject = createFileObject(fileWithUniqueName, previewURL);
+
+      setFiles((prevFiles) => [...prevFiles, newFileObject]);
+
+      if (fileWithUniqueName.type.startsWith("image/")) {
+        // For image files, update the preview URL immediately
+        const imagePreviewURL = URL.createObjectURL(fileWithUniqueName);
+        setFiles((prevFiles) =>
+          prevFiles.map((f) =>
+            f.name === newName ? { ...f, previewURL: imagePreviewURL } : f
+          )
+        );
+      } else if (
+        fileWithUniqueName.type.startsWith("video/") &&
+        !isSmallDevice()
+      ) {
+        // For video files, process to get the thumbnail
+        extractVideoThumbnail(fileWithUniqueName).then((videoThumbnailURL) => {
+          setFiles((prevFiles) =>
+            prevFiles.map((f) =>
+              f.name === newName ? { ...f, previewURL: videoThumbnailURL } : f
+            )
+          );
+        });
+      }
     });
   };
+
 
   const isSmallDevice = () => {
     return window.innerWidth < 800;
@@ -383,8 +408,41 @@ function Upload() {
     </div>
   );
 
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+  };
+
+  const [unsupportedFileMessage, setUnsupportedFileMessage] = useState("");
+
+  const openImageModal = (file) => {
+    if (/\.(jpg|jpeg|png|gif|bmp|svg|tiff|webp|heic|heif)$/i.test(file.name)) {
+      setSelectedImage({ url: file.previewURL, name: file.name });
+      setUnsupportedFileMessage(""); // Clear any previous error message
+    } else {
+      setUnsupportedFileMessage("Unsupported File to Display");
+      setTimeout(() => {
+        setUnsupportedFileMessage(""); // Clear the message after 2 seconds
+      }, 2000);
+    }
+  };
+
+
   return (
     <div className="upload-container">
+      {selectedImage && (
+        <ImageModal
+          imageUrl={selectedImage.url}
+          imageName={selectedImage.name}
+          onClose={closeImageModal}
+        />
+      )}
+
+      {unsupportedFileMessage && (
+        <div className="unsupported-file-message">{unsupportedFileMessage}</div>
+      )}
+
       <div>
         <a href="./home" className="kite-link">
           KITE
@@ -435,6 +493,7 @@ function Upload() {
                       src={file.previewURL}
                       alt="Preview"
                       style={{ width: "50px", height: "50px" }}
+                      onClick={() => openImageModal(file)} // Here pass the whole file object
                     />
                   )}
                   <div className="file-info">

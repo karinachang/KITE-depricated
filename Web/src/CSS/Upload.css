@@ -244,3 +244,8 @@ input[type="checkbox"] {
   background-color: transparent;
   color: red; /* Color changes on hover */
 }
+
+.unsupported-file-message {
+  color: red;
+  margin-bottom: 10px;
+}
