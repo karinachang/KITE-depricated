@@ -29,10 +29,18 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  border: none;
   background: none;
   font-size: 24px;
   cursor: pointer;
+  font-weight: bold; /* Makes the text bold */
+
+  /* Applying text shadow as a border around the text */
+  color: white; /* Text color */
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .close-button:hover {
