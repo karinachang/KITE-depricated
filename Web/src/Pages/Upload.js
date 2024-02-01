@@ -198,13 +198,13 @@ function Upload() {
           // Image files
           const previewURL = URL.createObjectURL(file);
           resolve(createFileObject(file, previewURL));
-        } else if (file.type.startsWith("video/")) {
-          // Video files
+        } else if (file.type.startsWith("video/") && !isSmallDevice()) {
+          // Video files (only if not a small device)
           extractVideoThumbnail(file).then((previewURL) => {
             resolve(createFileObject(file, previewURL));
           });
         } else {
-          // Other file types
+          // Other file types or small device
           const previewURL = getFileIconURL(file.name);
           console.log(previewURL);
           resolve(createFileObject(file, previewURL));
@@ -215,6 +215,10 @@ function Upload() {
     Promise.all(mappedFiles).then((result) => {
       setFiles((prevFiles) => [...prevFiles, ...result]);
     });
+  };
+
+  const isSmallDevice = () => {
+    return window.innerWidth < 800;
   };
 
   const extractVideoThumbnail = (file) => {
@@ -271,19 +275,6 @@ function Upload() {
       selected: false,
       previewURL: previewURL,
     };
-  };
-
-  const toggleFileSelection = (index) => {
-    setFiles((prevFiles) =>
-      prevFiles.map((file, i) =>
-        i === index ? { ...file, selected: !file.selected } : file
-      )
-    );
-  };
-
-  const toggleSelectAll = () => {
-    const allSelected = files.every((file) => file.selected);
-    setFiles(files.map((file) => ({ ...file, selected: !allSelected })));
   };
 
   const formatFileName = (name) => {
