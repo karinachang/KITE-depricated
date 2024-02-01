@@ -47,10 +47,6 @@ function Upload() {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
-  const isAnyFileSelected = () => {
-    return files.some((file) => file.selected);
-  };
-
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -317,23 +313,21 @@ function Upload() {
       return; // Prevent further execution of the function
     }
 
-    // Check if any file is selected
-    if (isAnyFileSelected()) {
+    // Proceed if there are files in the array, regardless of their selected status
+    if (files.length > 0) {
       // Displaying a message to the user
-      alert("Sending selected file(s) to the server...");
+      alert("Sending file(s) to the server...");
 
       // Make an API call to your server
-      console.log(
-        "Files to upload:",
-        files.filter((file) => file.selected)
-      );
+      console.log("Files to upload:", files);
 
       // Redirect to the Uploaded page
       window.location.href = "./Uploaded";
     } else {
-      alert("Please select at least one file to upload.");
+      alert("Please add at least one file to upload.");
     }
   };
+
 
   const settingsBox = files.length > 0 && (
     <div className="settings-container">
