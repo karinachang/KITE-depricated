@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../CSS/Upload.css";
 
 function Upload() {
@@ -34,17 +36,16 @@ function Upload() {
   };
 
   const calculateTotalSize = () => {
-    const totalBytes = files.reduce((total, file) => {
-      if (file.selected) {
-        console.log("Adding size:", file.sizeInBytes); // Debugging log
-        return total + file.sizeInBytes;
-      } else {
-        return total;
-      }
-    }, 0);
-
+    const totalBytes = files.reduce(
+      (total, file) => total + file.sizeInBytes,
+      0
+    );
     console.log("Total size in bytes:", totalBytes); // Debugging log
     return formatBytes(totalBytes);
+  };
+
+  const deleteFile = (index) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   const isAnyFileSelected = () => {
@@ -143,7 +144,7 @@ function Upload() {
     XML: "XML.png",
     COMPRESSED: "COMPRESSED.png",
     // Default icon for unlisted file types
-    DEFAULT: "FILE.png"
+    DEFAULT: "FILE.png",
   };
 
   const compressedFileExtensions = [
@@ -183,10 +184,10 @@ function Upload() {
   const getFileIconURL = (filename) => {
     const extension = filename.split(".").pop().toUpperCase();
     if (compressedFileExtensions.includes(extension)) {
-      return window.location.origin + '/images/COMPRESSED.png';
+      return window.location.origin + "/images/COMPRESSED.png";
     } else {
       const iconFileName = fileIcons[extension] || fileIcons["DEFAULT"];
-      return window.location.origin + '/images/' + iconFileName;
+      return window.location.origin + "/images/" + iconFileName;
     }
   };
 
@@ -268,7 +269,7 @@ function Upload() {
       size: formatBytes(file.size),
       sizeInBytes: file.size,
       selected: false,
-      previewURL: previewURL
+      previewURL: previewURL,
     };
   };
 
@@ -426,22 +427,18 @@ function Upload() {
         </div>
         {files.length > 0 && (
           <div>
-            <div className="select-all">
-              <input
-                type="checkbox"
-                onChange={toggleSelectAll}
-                checked={files.every((file) => file.selected)}
-              />
-              Select All
-            </div>
             <div className="file-display-container">
               {files.map((file, index) => (
                 <div className="file-status-bar" key={index}>
-                  <input
-                    type="checkbox"
-                    checked={file.selected}
-                    onChange={() => toggleFileSelection(index)}
-                  />
+                  <button
+                    type="button"
+                    onClick={() => deleteFile(index)}
+                    className="delete-button"
+                    aria-label="Delete file"
+                  >
+                    X
+                  </button>
+
                   {file.previewURL && (
                     <img
                       src={file.previewURL}
@@ -465,7 +462,7 @@ function Upload() {
         <>
           {settingsBox} {/* Settings Box will appear here */}
           <div className="totalsize">
-            Total Selected Size:{" "}
+            Total Size:{" "}
             <span className="total-size-color">{calculateTotalSize()}</span>
           </div>
           <button onClick={dummyUploadFiles}>Upload</button>
