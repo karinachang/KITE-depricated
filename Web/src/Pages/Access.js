@@ -56,7 +56,7 @@ function Access() {
   const DownloadModal = () => (
     <div className="download-modal">
       <p>
-        Your download will start shortly. If not, <a href="#">click here</a>.
+              Your download will start shortly. If not, <a href="https://storage.googleapis.com/kitebucket/testfolder/heeyaw.png">click here</a>.
       </p>
       <button onClick={handleCloseModal}>Close</button>
     </div>
@@ -146,7 +146,7 @@ function Access() {
           <div className="download-modal">
             <p>
               Your download will start shortly. If not,{" "}
-              <a href="#">click here</a>.
+              <a href="https://storage.googleapis.com/kitebucket/testfolder/heeyaw.png">click here</a>.
             </p>
             <button onClick={handleCloseModal}>Close</button>
           </div>
