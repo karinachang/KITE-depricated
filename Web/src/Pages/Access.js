@@ -44,6 +44,7 @@ function Access() {
     if (isAnyFileSelected) {
       setShowDownloadModal(true);
       // Actual logic that initiates the download
+        downloadFile('https://storage.googleapis.com/kitebucket/testfolder/heeyaw.png', 'test.js')
     } else {
       alert("Please select at least one file to download.");
     }
@@ -87,6 +88,22 @@ function Access() {
       // Bytes
       return totalBytes + " bytes";
     }
+  };
+  const downloadFile = (url, fileName) => {
+      fetch(url, { method: "get", mode: "no-cors", referrerPolicy: "no-referrer" })
+        .then((res) => res.blob())
+        .then((res) => {
+            const aElement = document.createElement("a");
+            aElement.setAttribute("download", fileName);
+            const href = URL.createObjectURL(res);
+            aElement.href = href;
+            aElement.setAttribute("target", "_blank");
+            aElement.click();
+            console.log(url);
+            console.log(res);
+            console.log(href);
+            URL.revokeObjectURL(href);
+        });
   };
 
   return (
@@ -146,7 +163,7 @@ function Access() {
           <div className="download-modal">
             <p>
               Your download will start shortly. If not,{" "}
-              <a href="https://storage.googleapis.com/kitebucket/testfolder/heeyaw.png">click here</a>.
+              <a href="https://storage.googleapis.com/kitebucket/testfolder/heeyaw.png" onClick={() => { downloadFile('https://www.google-analytics.com/analytics.js', 'download.png') } }>click here</a>.
             </p>
             <button onClick={handleCloseModal}>Close</button>
           </div>
