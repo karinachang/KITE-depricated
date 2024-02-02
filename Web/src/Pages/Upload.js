@@ -312,6 +312,9 @@ function Upload() {
       return; // Prevent further execution of the function
     }
 
+    // Send https request to cloud function, runs BucketUpload2
+    fetch("https://us-central1-kite-408522.cloudfunctions.net/BucketUpload2")
+
     // Proceed if there are files in the array, regardless of their selected status
     if (files.length > 0) {
       // Displaying a message to the user
