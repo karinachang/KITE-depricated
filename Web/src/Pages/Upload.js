@@ -313,7 +313,7 @@ function Upload() {
     }
 
     // Send https request to cloud function, runs BucketUpload2
-    fetch("https://us-central1-kite-408522.cloudfunctions.net/BucketUpload2")
+    fetch("https://us-central1-kite-408522.cloudfunctions.net/BucketUpload2");
 
     // Proceed if there are files in the array, regardless of their selected status
     if (files.length > 0) {
@@ -425,7 +425,8 @@ function Upload() {
 
   const uploadContainerStyle = {
     minWidth: files.length > 0 ? "80vh" : "0vh",
-    backgroundColor: files.length > 0 ? "white" : "transparent",
+    backgroundColor: files.length > 0 ? "#fafffd" : "transparent",
+    boxShadow: files.length > 0 ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "none",
   };
 
   const dropZoneStyle = {
@@ -433,7 +434,7 @@ function Upload() {
   };
 
   return (
-    <div className="upload-container" style={uploadContainerStyle}>
+    <div className="upload-container-uploadbox" style={uploadContainerStyle}>
       {selectedImage && (
         <ImageModal
           imageUrl={selectedImage.url}

@@ -1,14 +1,18 @@
-.upload-container {
-  text-align: center;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+.upload-container-uploadbox {
+  display: flex;
+  flex-direction: column; /* Stack vertically on smaller screens */
+  align-items: center;
+  justify-content: center; /* Center children vertically and horizontally */
+  min-width: 10vh;
+  min-height: 10vh; /* Full viewport height */
+  background-color: #fafffd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
 @media (min-width: 768px) {
   /* Adjust for larger screens */
-  .upload-container {
+  .upload-container-uploadbox {
     flex-direction: row; /* Side by side for larger screens */
     justify-content: space-evenly; /* Even spacing around children */
     align-items: center; /* Align items at the center */
@@ -24,21 +28,20 @@
   display: inline-block; /* Adjust width to fit content */
   text-align: center; /* Ensure the text is centered */
   color: red;
-  background-color: white; /* Background color around the text */
+  background-color: #fafffd; /* Background color around the text */
   padding: 0.5vh 1vh; /* Add some space around the text */
   margin-top: 2vh; /* Adjust as needed for spacing from the top */
   border-radius: 1vh; /* Optional: Adds rounded corners for aesthetic */
 }
-
 
 .drop-zone {
   border-radius: 2vh;
   width: 60vh;
   padding: 3vh;
   text-align: center;
-  background-color: #FAFFFD;
+  background-color: #fafffd;
   box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   cursor: pointer;
   margin-bottom: 2vh;
 }
@@ -46,6 +49,10 @@
 .drop-message {
   font-size: 2vh;
   color: #333;
+}
+
+.drop-zone.active {
+  background-color: rgba(144, 92, 247, 0.204);
 }
 
 .upload-link {
@@ -154,10 +161,10 @@ button {
 
 .delete-button:hover {
   background-color: transparent;
-  color: #A3004E;
+  color: #a3004e;
 }
 
 .unsupported-file-message {
-  color: #A3004E;
+  color: #a3004e;
   margin-bottom: 2vh;
 }

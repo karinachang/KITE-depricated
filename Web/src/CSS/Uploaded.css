@@ -1,3 +1,20 @@
+.upload-container {
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  /* Adjust for larger screens */
+  .upload-container {
+    flex-direction: row; /* Side by side for larger screens */
+    justify-content: space-evenly; /* Even spacing around children */
+    align-items: center; /* Align items at the center */
+  }
+}
+
 .progress-bar {
   background-color: #905CF7;
   border-radius: 20px;
