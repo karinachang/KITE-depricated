@@ -1,13 +1,9 @@
 .upload-container {
-  display: flex;
-  flex-direction: column; /* Stack vertically on smaller screens */
-  align-items: center;
-  justify-content: center; /* Center children vertically and horizontally */
-  min-width: 10vh;
-  min-height: 25vh; /* Full viewport height */
-  background-color: white;
-  box-shadow: 0 2vh 4vh rgba(0, 0, 0, 0.1);
-  z-index: 10000;
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 @media (min-width: 768px) {
@@ -36,19 +32,15 @@
 
 
 .drop-zone {
-  border: 2px dashed #69b3e7;
   border-radius: 2vh;
-  width: 60vh; /* Adjust based on your preference */
-  padding: 3vh; /* Padding inside the drop-zone */
+  width: 60vh;
+  padding: 3vh;
   text-align: center;
-  background-color: white;
+  background-color: #FAFFFD;
+  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 2vh; /* Space below the drop-zone */
-}
-
-.drop-zone.active {
-  background-color: rgba(1, 179, 255, 0.204);
+  margin-bottom: 2vh;
 }
 
 .drop-message {
@@ -111,10 +103,6 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #578abd;
-}
-
 .settings-container {
   width: 40vh; /* Adjust the width of settings container */
   padding: 2vh;
@@ -166,10 +154,10 @@ button:hover {
 
 .delete-button:hover {
   background-color: transparent;
-  color: red;
+  color: #A3004E;
 }
 
 .unsupported-file-message {
-  color: red;
+  color: #A3004E;
   margin-bottom: 2vh;
 }
