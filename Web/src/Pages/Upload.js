@@ -413,15 +413,24 @@ function Upload() {
       setSelectedImage({ url: file.previewURL, name: file.name });
       setUnsupportedFileMessage(""); // Clear any previous error message
     } else {
-      setUnsupportedFileMessage("Unsupported File to Display");
+      setUnsupportedFileMessage("Unsupported file to display");
       setTimeout(() => {
         setUnsupportedFileMessage(""); // Clear the message after 2 seconds
       }, 2000);
     }
   };
 
+  const uploadContainerStyle = {
+    minWidth: files.length > 0 ? "80vh" : "0vh",
+    backgroundColor: files.length > 0 ? "white" : "transparent",
+  };
+
+  const dropZoneStyle = {
+    padding: files.length > 0 ? "3vh" : "7vh", // Change padding based on files array
+  };
+
   return (
-    <div className="upload-container">
+    <div className="upload-container" style={uploadContainerStyle}>
       {selectedImage && (
         <ImageModal
           imageUrl={selectedImage.url}
@@ -447,6 +456,7 @@ function Upload() {
       </div>
       <form
         className={`drop-zone ${dragActive ? "active" : ""}`}
+        style={dropZoneStyle} // Apply dynamic styles here
         onDragEnter={handleDrag}
         onDragOver={handleDrag}
         onDragLeave={handleDrag}
@@ -478,7 +488,6 @@ function Upload() {
                   >
                     X
                   </button>
-
                   {file.previewURL && (
                     <img
                       src={file.previewURL}
@@ -487,8 +496,8 @@ function Upload() {
                       onClick={() => openImageModal(file)}
                       onError={(e) => {
                         e.target.src =
-                          window.location.origin + "/images/FILE.png";
-                      }} // Fallback to default image on error
+                          window.location.origin + "/images/FILE.png"; // Fallback to default image on error
+                      }}
                     />
                   )}
                   <div className="file-info">
@@ -506,11 +515,13 @@ function Upload() {
       {files.length > 0 && (
         <>
           {settingsBox} {/* Settings Box will appear here */}
-          <div className="totalsize">
-            Total Size:{" "}
-            <span className="total-size-color">{calculateTotalSize()}</span>
+          <div className="upload-actions-container">
+            <div className="totalsize">
+              Total Size:{" "}
+              <span className="total-size-color">{calculateTotalSize()}</span>
+            </div>
+            <button onClick={dummyUploadFiles}>Upload</button>
           </div>
-          <button onClick={dummyUploadFiles}>Upload</button>
         </>
       )}
     </div>

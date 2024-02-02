@@ -1,34 +1,57 @@
 .upload-container {
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Stack vertically on smaller screens */
   align-items: center;
+  justify-content: center; /* Center children vertically and horizontally */
+  min-width: 10vh;
+  min-height: 10vh; /* Full viewport height */
+  background-color: white;
+  box-shadow: 0 2vh 4vh rgba(0, 0, 0, 0.1);
 }
+
+@media (min-width: 768px) {
+  /* Adjust for larger screens */
+  .upload-container {
+    flex-direction: row; /* Side by side for larger screens */
+    justify-content: space-evenly; /* Even spacing around children */
+    align-items: center; /* Align items at the center */
+  }
+}
+
+.unsupported-file-message {
+  position: absolute;
+  top: 20vh; /* Position at the top of the parent container */
+  font-size: 2.5vh;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for exact centering */
+  display: inline-block; /* Adjust width to fit content */
+  text-align: center; /* Ensure the text is centered */
+  color: red;
+  background-color: white; /* Background color around the text */
+  padding: 0.5vh 1vh; /* Add some space around the text */
+  margin-top: 2vh; /* Adjust as needed for spacing from the top */
+  border-radius: 1vh; /* Optional: Adds rounded corners for aesthetic */
+}
+
 
 .drop-zone {
   border: 2px dashed #69b3e7;
-  border-radius: 10px;
-  width: 100%;
-  padding: 30px;
+  border-radius: 2vh;
+  width: 60vh; /* Adjust based on your preference */
+  padding: 3vh; /* Padding inside the drop-zone */
   text-align: center;
   background-color: white;
   cursor: pointer;
   transition: background-color 0.3s;
-  position: relative;
+  margin-bottom: 2vh; /* Space below the drop-zone */
 }
 
 .drop-zone.active {
-  background-color: #e8f6fd;
+  background-color: rgba(1, 179, 255, 0.204);
 }
 
 .drop-message {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 2vh;
   color: #333;
 }
 
@@ -39,40 +62,23 @@
 }
 
 .file-input {
-  position: relative;
-  top: 100;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  opacity: 0;
-  cursor: pointer;
+  opacity: 0; /* Hide the file input */
 }
 
 .file-display-container {
-  width: 100%;
-  height: 500px;
-  overflow-y: scroll !important;
-  overflow-x: hidden;
-  min-height: 100px;
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
+  margin-top: 2vh;
+  overflow-y: auto; /* Enable scrolling for overflow */
+  max-height: 30vh; /* Limit height and enable scroll */
 }
 
 .file-status-bar {
-  width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 1vh;
+  margin-bottom: 1vh;
   background-color: #eee;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-}
-
-.file-status-bar input[type="checkbox"] {
-  margin-right: 10px; /* Space between checkbox and file name */
+  border-radius: 1vh;
+  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
 }
 
 .file-info {
@@ -81,147 +87,69 @@
   flex-grow: 1;
 }
 
-.file-name {
-  flex-grow: 1; /* Allows file name to take up available space */
-  padding-right: 10px; /* Padding on the right side of the file name */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+.file-name,
 .file-size {
-  color: #7b6f6f;
-  /* No margin-left needed; it's positioned automatically to the right */
-  padding-left: auto; /* Padding on the left side of the file size */
-  padding-right: 15px;
+  margin-left: 1vh;
+  margin-right: 1vh;
 }
 
-.select-all {
-  display: flex; /* Aligns items in a row */
-  align-items: center; /* Vertically aligns items in the flex container */
-  margin-top: 30px;
-  padding-left: 20px; /* Aligns with the padding of file-status-bar */
+.upload-actions-container {
+  display: flex;
+  flex-direction: column; /* This will ensure elements inside are stacked vertically */
+  align-items: center; /* Center-align the items if desired */
+  width: 100%; /* Take up full width to respect inner elements' margins */
 }
 
 button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+  padding: 1vh 2vh;
+  border-radius: 2vh;
   background-color: #69b3e7;
   color: white;
-  font-size: 16px;
+  font-size: 2vh;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 20px;
 }
 
 button:hover {
   background-color: #578abd;
 }
 
-/* Additional styling for checkboxes */
-input[type="checkbox"] {
-  cursor: pointer;
-}
-
-.totalsize {
-  margin-top: 2%;
-  color: rgb(94, 90, 90);
-  position: relative;
-}
-
 .settings-container {
-  width: 90%; /* Adjust the width as necessary */
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #fff; /* Background color for the settings area */
-  border: 1px solid #ddd; /* Border to match the file display container */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow to match the upload container */
+  width: 40vh; /* Adjust the width of settings container */
+  padding: 2vh;
+  background-color: white;
+  border-radius: 2vh;
+  margin-left: 2vh; /* Space between the drop-zone and settings on larger screens */
 }
 
 .setting {
-  margin-bottom: 10px; /* Space between settings */
+  margin-bottom: 2vh;
+  width: 20vh;
 }
 
 .setting label {
-  font-size: 14px;
-  color: #333; /* Label color */
-  margin-bottom: 5px; /* Space between label and input/select */
+  display: block;
+  font-size: 1.5vh;
+  color: #333;
 }
 
 .setting select,
 .setting input[type="text"],
-.setting input[type="password"],
-.setting button {
+.setting input[type="password"] {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd; /* Border color */
-  border-radius: 4px;
-  margin-bottom: 5px; /* Space between input/select and the next setting */
+  padding: 1vh;
+  margin-top: 1vh;
+  border: 1px solid #ddd;
+  border-radius: 1vh;
 }
 
-/* Styling for the peek button */
 .setting button {
-  width: auto; /* Auto width to fit content */
-  padding: 6px 12px; /* Smaller padding for the button */
-  background-color: #69b3e7; /* Button color to match the theme */
-  color: white;
-  text-align: center;
-  display: inline-block; /* Make the button inline */
-  cursor: pointer;
-  margin-top: 5px; /* Space between password field and button */
+  padding: 1vh 2vh;
+  margin-top: 1vh;
 }
 
-/* Styling for the radio buttons and their labels */
-.setting input[type="radio"] {
-  margin-right: 10px;
-}
-
-.setting input[type="radio"] + label {
-  margin-right: 20px; /* Space between the radio button and label */
-  cursor: pointer;
-}
-
-/* Adjust the file display container height if needed */
-.file-display-container {
-  max-height: 300px; /* Adjust height based on your design needs */
-  overflow-y: auto; /* Scrollbar as needed for overflow */
-}
-
-/* Additional hover effect for interactivity */
-.setting button:hover {
-  background-color: #578abd; /* Darker shade on hover */
-}
-
-/* Ensure the button inside the settings does not stretch */
-.setting button {
-  width: auto;
-  margin: 0;
-}
-
-/* Container for the password input and the peek button */
-.password-container {
-  position: relative; /* Set the position context for absolute positioning */
-  display: flex;
-  align-items: center;
-}
-
-/* Style for the password input */
-.password-input {
-  padding-right: 60px; /* Add padding to prevent text from being hidden behind the button */
-  width: 100%; /* Full width */
-  /* Other styling as before */
-}
-
-/* Style for the peek button */
 .peek-button {
-  position: absolute; /* Position the button absolutely within .password-container */
-  right: 0px; /* Distance from the right edge */
-  top: 45%; /* Start at 50% from the top */
-  transform: translateY(-50%); /* Adjust vertical position to center */
-  padding: 6px 12px; /* Padding inside the button */
-  margin: 0;
+  margin-left: auto;
 }
 
 .total-size-color {
@@ -230,22 +158,17 @@ input[type="checkbox"] {
 
 .delete-button {
   background-color: transparent;
-  color: rgb(58, 55, 55);
   border: none;
-  margin-bottom: 10px;
   cursor: pointer;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: rgb(58, 55, 55);
 }
 
 .delete-button:hover {
   background-color: transparent;
-  color: red; /* Color changes on hover */
+  color: red;
 }
 
 .unsupported-file-message {
   color: red;
-  margin-bottom: 10px;
+  margin-bottom: 2vh;
 }
