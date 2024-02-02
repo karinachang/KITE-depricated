@@ -4,9 +4,10 @@
   align-items: center;
   justify-content: center; /* Center children vertically and horizontally */
   min-width: 10vh;
-  min-height: 10vh; /* Full viewport height */
+  min-height: 25vh; /* Full viewport height */
   background-color: white;
   box-shadow: 0 2vh 4vh rgba(0, 0, 0, 0.1);
+  z-index: 10000;
 }
 
 @media (min-width: 768px) {
