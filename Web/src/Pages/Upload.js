@@ -237,7 +237,6 @@ function Upload() {
     });
   };
 
-
   const isSmallDevice = () => {
     return window.innerWidth < 800;
   };
@@ -328,7 +327,6 @@ function Upload() {
     }
   };
 
-
   const settingsBox = files.length > 0 && (
     <div className="settings-container">
       <div className="setting">
@@ -411,7 +409,7 @@ function Upload() {
   const [unsupportedFileMessage, setUnsupportedFileMessage] = useState("");
 
   const openImageModal = (file) => {
-    if (/\.(jpg|jpeg|png|gif|bmp|svg|tiff|webp|heic|heif)$/i.test(file.name)) {
+    if (/\.(jpg|jpeg|png|gif|bmp|svg)$/i.test(file.name)) {
       setSelectedImage({ url: file.previewURL, name: file.name });
       setUnsupportedFileMessage(""); // Clear any previous error message
     } else {
@@ -421,7 +419,6 @@ function Upload() {
       }, 2000);
     }
   };
-
 
   return (
     <div className="upload-container">
@@ -487,7 +484,11 @@ function Upload() {
                       src={file.previewURL}
                       alt="Preview"
                       style={{ width: "50px", height: "50px" }}
-                      onClick={() => openImageModal(file)} // Here pass the whole file object
+                      onClick={() => openImageModal(file)}
+                      onError={(e) => {
+                        e.target.src =
+                          window.location.origin + "/images/FILE.png";
+                      }} // Fallback to default image on error
                     />
                   )}
                   <div className="file-info">
