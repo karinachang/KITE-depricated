@@ -1,3 +1,12 @@
+:root {
+  --purple: #905CF7;
+  --white: #FAFFFD;
+  --pink: #FF99E8;
+  --red: #A3004E;
+  --green: #C2B200;
+  --black: #000000;
+}
+
 .upload-container-uploadbox {
   display: flex;
   flex-direction: column; /* Stack vertically on smaller screens */
@@ -5,7 +14,7 @@
   justify-content: center; /* Center children vertically and horizontally */
   min-width: 10vh;
   min-height: 10vh; /* Full viewport height */
-  background-color: #fafffd;
+  background-color: var(--white);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
@@ -28,7 +37,7 @@
   display: inline-block; /* Adjust width to fit content */
   text-align: center; /* Ensure the text is centered */
   color: red;
-  background-color: #fafffd; /* Background color around the text */
+  background-color: var(--white); /* Background color around the text */
   padding: 0.5vh 1vh; /* Add some space around the text */
   margin-top: 2vh; /* Adjust as needed for spacing from the top */
   border-radius: 1vh; /* Optional: Adds rounded corners for aesthetic */
@@ -39,7 +48,7 @@
   width: 60vh;
   padding: 3vh;
   text-align: center;
-  background-color: #fafffd;
+  background-color: var(--white);
   box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
   cursor: pointer;
@@ -56,7 +65,7 @@
 }
 
 .upload-link {
-  color: #905CF7;
+  color: var(--purple);
   text-decoration: underline;
   cursor: pointer;
 }
@@ -101,26 +110,29 @@
 }
 
 .dummy-upload-files {
-  background-color: #905CF7;
-  color: #FAFFFD;
+  background-color: var(--purple);
+  color: var(--white);
   padding: 10px 20px;
-  border: 2px solid black;
+  border: 2px solid var(--black);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
+}
+
+button {
   transition: background-color 0.3s;
 }
 
 .dummy-upload-files:hover {
-  background-color: #FF99E8;
+  background-color: var(--pink);
 }
 
 .settings-container {
   width: 40vh; /* Adjust the width of settings container */
   padding: 2vh;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 2vh;
   margin-left: 2vh; /* Space between the drop-zone and settings on larger screens */
 }
@@ -168,10 +180,10 @@
 
 .delete-button:hover {
   background-color: transparent;
-  color: #a3004e;
+  color: var(--red);
 }
 
 .unsupported-file-message {
-  color: #a3004e;
+  color: var(--red);
   margin-bottom: 2vh;
 }
