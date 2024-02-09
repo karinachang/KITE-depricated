@@ -60,10 +60,6 @@ const Uploaded = () => {
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          <div className="upload-message">
-            Please do not reload the page. Upon uploading a code will be
-            generated.
-          </div>
         </>
       )}
       {uploadComplete && (

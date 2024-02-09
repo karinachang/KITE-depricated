@@ -317,9 +317,6 @@ function Upload() {
 
     // Proceed if there are files in the array, regardless of their selected status
     if (files.length > 0) {
-      // Displaying a message to the user
-      alert("Sending file(s) to the server...");
-
       // Make an API call to your server
       console.log("Files to upload:", files);
 
@@ -524,7 +521,7 @@ function Upload() {
               Total Size:{" "}
               <span className="total-size-color">{calculateTotalSize()}</span>
             </div>
-            <button onClick={dummyUploadFiles}>Upload</button>
+            <button className="dummy-upload-files" onClick={dummyUploadFiles}>Upload</button>
           </div>
         </>
       )}

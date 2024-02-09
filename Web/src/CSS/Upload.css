@@ -56,7 +56,7 @@
 }
 
 .upload-link {
-  color: #69b3e7;
+  color: #905CF7;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -100,14 +100,21 @@
   width: 100%; /* Take up full width to respect inner elements' margins */
 }
 
-button {
-  padding: 1vh 2vh;
-  border-radius: 2vh;
-  background-color: #69b3e7;
-  color: white;
-  font-size: 2vh;
+.dummy-upload-files {
+  background-color: #905CF7;
+  color: #FAFFFD;
+  padding: 10px 20px;
+  border: 2px solid black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
   transition: background-color 0.3s;
+}
+
+.dummy-upload-files:hover {
+  background-color: #FF99E8;
 }
 
 .settings-container {
