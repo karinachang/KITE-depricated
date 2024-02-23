@@ -330,7 +330,7 @@ function Upload() {
   const settingsBox = files.length > 0 && (
     <div className="settings-container">
       <div className="setting">
-        <label>Max number of downloads</label>
+        <label>Max downloads</label>
         <select
           value={maxDownloads}
           onChange={(e) => setMaxDownloads(e.target.value)}
@@ -344,7 +344,7 @@ function Upload() {
         </select>
       </div>
       <div className="setting">
-        <label>Time to live</label>
+        <label>Delete after</label>
         <select
           value={timeToLive}
           onChange={(e) => setTimeToLive(e.target.value)}
@@ -357,7 +357,7 @@ function Upload() {
         </select>
       </div>
       <div className="setting">
-        <label>Security</label>
+        <label>Password</label>
         <div>
           <input
             type="radio"
@@ -384,14 +384,9 @@ function Upload() {
                 className="password-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
               />
-              <button
-                type="button"
-                className="peek-button"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "Unpeek" : "Peek"}
+              <button className="peek-button" onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <span class="material-symbols-outlined">visibility</span> : <span class="material-symbols-outlined">visibility_off</span>}
               </button>
             </div>
           )}
@@ -420,18 +415,22 @@ function Upload() {
     }
   };
 
+  /*
   const uploadContainerStyle = {
     minWidth: files.length > 0 ? "80vh" : "0vh",
     backgroundColor: files.length > 0 ? "#fafffd" : "transparent",
     boxShadow: files.length > 0 ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "none",
   };
+  */
 
+  /*
   const dropZoneStyle = {
     padding: files.length > 0 ? "3vh" : "7vh", // Change padding based on files array
   };
+  */
 
   return (
-    <div className="upload-container-uploadbox" style={uploadContainerStyle}>
+    <div className="upload-container-uploadbox" /*style={uploadContainerStyle}*/>
       {selectedImage && (
         <ImageModal
           imageUrl={selectedImage.url}
@@ -448,16 +447,10 @@ function Upload() {
         <a href="./home" className="kite-link">
           KITE
         </a>
-        <button
-          onClick={() => (window.location.href = "./upload")}
-          className="Upload-button"
-        >
-          Upload
-        </button>
       </div>
       <form
         className={`drop-zone ${dragActive ? "active" : ""}`}
-        style={dropZoneStyle} // Apply dynamic styles here
+        /*style={dropZoneStyle} // Apply dynamic styles here*/
         onDragEnter={handleDrag}
         onDragOver={handleDrag}
         onDragLeave={handleDrag}

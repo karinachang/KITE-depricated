@@ -12,21 +12,20 @@
   flex-direction: column; /* Stack vertically on smaller screens */
   align-items: center;
   justify-content: center; /* Center children vertically and horizontally */
-  min-width: 10vh;
-  min-height: 10vh; /* Full viewport height */
-  background-color: var(--white);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60vw;
+  height: 50vh;
+  background-color: transparent;
   border-radius: 10px;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   /* Adjust for larger screens */
-  .upload-container-uploadbox {
+  /*.upload-container-uploadbox {
     flex-direction: row; /* Side by side for larger screens */
-    justify-content: space-evenly; /* Even spacing around children */
-    align-items: center; /* Align items at the center */
-  }
-}
+    /*justify-content: space-evenly; /* Even spacing around children */
+    /*align-items: center; /* Align items at the center */
+  /*}
+}*/
 
 .unsupported-file-message {
   position: absolute;
@@ -36,7 +35,8 @@
   transform: translateX(-50%); /* Adjust for exact centering */
   display: inline-block; /* Adjust width to fit content */
   text-align: center; /* Ensure the text is centered */
-  color: red;
+  color: var(--red);
+  margin-bottom: 2vh;
   background-color: var(--white); /* Background color around the text */
   padding: 0.5vh 1vh; /* Add some space around the text */
   margin-top: 2vh; /* Adjust as needed for spacing from the top */
@@ -45,23 +45,25 @@
 
 .drop-zone {
   border-radius: 2vh;
-  width: 60vh;
+  width: 60vw;
   padding: 3vh;
   text-align: center;
   background-color: var(--white);
   box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
-  cursor: pointer;
   margin-bottom: 2vh;
 }
 
 .drop-message {
   font-size: 2vh;
-  color: #333;
+  font-family: "Roboto", sans-serif;
+  color: var(--black);
+  margin: auto;
 }
 
 .drop-zone.active {
-  background-color: rgba(144, 92, 247, 0.204);
+  background-color: var(--purple);
+  color: var(--white);
 }
 
 .upload-link {
@@ -83,11 +85,8 @@
 .file-status-bar {
   display: flex;
   align-items: center;
-  padding: 1vh;
   margin-bottom: 1vh;
-  background-color: #eee;
-  border-radius: 1vh;
-  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
+  background-color: transparent;
 }
 
 .file-info {
@@ -130,11 +129,12 @@ button {
 }
 
 .settings-container {
-  width: 40vh; /* Adjust the width of settings container */
-  padding: 2vh;
-  background-color: var(--white);
-  border-radius: 2vh;
-  margin-left: 2vh; /* Space between the drop-zone and settings on larger screens */
+  width: 50vw;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .setting {
@@ -145,7 +145,7 @@ button {
 .setting label {
   display: block;
   font-size: 1.5vh;
-  color: #333;
+  color: var(--black);
 }
 
 .setting select,
@@ -154,8 +154,11 @@ button {
   width: 100%;
   padding: 1vh;
   margin-top: 1vh;
-  border: 1px solid #ddd;
-  border-radius: 1vh;
+  border: 2px solid var(--black);
+  background-color: transparent;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 
 .setting button {
@@ -163,27 +166,38 @@ button {
   margin-top: 1vh;
 }
 
-.peek-button {
-  margin-left: auto;
+.password-container {
+  display: flex;
+  flex-direction: row;
+  width: 11vw;
 }
 
-.total-size-color {
-  color: rgb(0, 4, 255);
+.password-input {
+  font-size: 14px;
+}
+
+.password-input:focus {
+  outline: none;
+}
+
+.peek-button {
+  height: 30px;
+  width: 40px;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .delete-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: rgb(58, 55, 55);
+  color: var(--black);
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 
 .delete-button:hover {
-  background-color: transparent;
   color: var(--red);
-}
-
-.unsupported-file-message {
-  color: var(--red);
-  margin-bottom: 2vh;
 }

@@ -1,3 +1,12 @@
+:root {
+  --purple: #905CF7;
+  --white: #FAFFFD;
+  --pink: #FF99E8;
+  --red: #A3004E;
+  --green: #C2B200;
+  --black: #000000;
+}
+
 body, html {
   height: 100%;
   margin: 0;
@@ -15,19 +24,14 @@ body, html {
   background-color: transparent;
 }
 
-.App-logo {
-  font-size: 2em;
-  color: #000080;
-}
-
 .Upload-button {
-  background-color: #905CF7;
+  background-color: var(--purple);
   position: absolute;
   top: 50px;
   right: 50px; /* Adjust as needed for right-side margin */
-  color: #FAFFFD;
+  color: var(--white);
   padding: 10px 20px;
-  border: 2px solid black;
+  border: 2px solid var(--black);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
@@ -36,7 +40,7 @@ body, html {
 }
 
 .Upload-button:hover {
-  background-color: #FF99E8;
+  background-color: var(--pink);
 }
 
 .App-main {
@@ -58,7 +62,7 @@ body, html {
   display: block;
   margin-bottom: 10px;
   font-size: 18px;
-  color: black;
+  color: var(--black);
   background-color: transparent;
   font-family: 'Roboto', sans-serif;
   text-align: center;
@@ -70,10 +74,13 @@ body, html {
   text-align: center;
   padding: 10px;
   margin-bottom: 20px;
-  border: 2px solid black;
+  border: 2px solid var(--black);
   border-radius: 5px;
   width: 15vw;
   background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: var(--black);
 }
 
 .code-input-field:focus {
@@ -82,10 +89,10 @@ body, html {
 }
 
 button.access-file-button {
-  background-color: #905CF7;
-  color: #FAFFFD;
+  background-color: var(--purple);
+  color: var(--white);
   padding: 10px 20px;
-  border: 2px solid black;
+  border: 2px solid var(--black);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
@@ -95,7 +102,7 @@ button.access-file-button {
 }
 
 button.access-file-button:hover {
-  background-color: #FF99E8;
+  background-color: var(--pink);
 }
 
 .kite-link {
@@ -103,6 +110,6 @@ button.access-file-button:hover {
   top: 50px;
   left: 50px;
   font-size: 40px;
-  color: #FAFFFD;
+  color: var(--white);
   text-decoration: none;
 }

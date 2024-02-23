@@ -1,3 +1,12 @@
+:root {
+  --purple: #905CF7;
+  --white: #FAFFFD;
+  --pink: #FF99E8;
+  --red: #A3004E;
+  --green: #C2B200;
+  --black: #000000;
+}
+
 .upload-container {
   text-align: center;
   max-width: 600px;
@@ -16,7 +25,7 @@
 }
 
 .progress-bar {
-  background-color: #905CF7;
+  background-color: var(--purple);
   border-radius: 20px;
   padding: 3px;
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -28,12 +37,12 @@
 }
 
 .progress {
-  background-color: #FF99E8;
+  background-color: var(--pink);
   height: 20px;
   border-radius: 15px;
   transition: width 0.4s ease;
   line-height: 20px; /* Align text vertically */
-  color: white;
+  color: var(--white);
   font-weight: bold;
   text-align: center;
   width: 0%; /* Start with 0% width */
@@ -46,7 +55,7 @@
   font-size: 12px;
   padding-left: 20px;
   padding-right: 20px;
-  color: white;
+  color: var(--white);
   font-weight: bold;
 }
 
@@ -55,7 +64,7 @@
 }
 
 .code-box {
-  background-color: #FAFFFD;
+  background-color: var(--white);
   padding: 20px;
   margin-bottom: 20px;
   font-size: 1.5em;
@@ -77,14 +86,14 @@
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  background-color: #905CF7;
-  color: #FAFFFD;
+  background-color: var(--purple);
+  color: var(--white);
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button-container button:hover {
-  background-color: #FF99E8;
+  background-color: var(--pink);
 }
 
 /* QR Code styling */
@@ -93,6 +102,6 @@
 }
 
 .qr-code-container canvas {
-  border: 5px solid white;
+  border: 5px solid var(--white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
