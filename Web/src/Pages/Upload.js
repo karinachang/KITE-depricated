@@ -392,8 +392,7 @@ const handleUpload = async () => {
   const metadata = {
     maxDownloads: maxDownloads || "null",
     timeToLive: timeToLive || "null",
-    security: security || "null",
-    password: security === "Password" ? password : "null",
+    password: havePassword ? password : "null",
     uploadTimestamp: new Date().toISOString(),
   };
 
