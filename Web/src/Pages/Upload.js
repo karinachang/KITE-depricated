@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../CSS/Upload.css";
 import ImageModal from "../Components/DisplayModal.js";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 function Upload() {
   const [files, setFiles] = useState([]);
@@ -10,6 +12,7 @@ function Upload() {
   const [havePassword, setHavePassword] = useState(false);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const preventDefault = (e) => {
@@ -375,8 +378,82 @@ function Upload() {
     }
   };
 
+const handleUpload = async () => {
+  setIsLoading(true); // Show loading indicator
+
+  const zip = new JSZip();
+  // Add each file to the zip
+  files.forEach((fileObject) => {
+    // Assuming 'fileObject.file' is the File object
+    zip.file(fileObject.name, fileObject.file);
+  });
+
+  // Create metadata
+  const metadata = {
+    maxDownloads: maxDownloads || "null",
+    timeToLive: timeToLive || "null",
+    security: security || "null",
+    password: security === "Password" ? password : "null",
+    uploadTimestamp: new Date().toISOString(),
+  };
+
+  // Add metadata.json to the zip
+  zip.file("metadata.json", JSON.stringify(metadata));
+
+  try {
+    const content = await zip.generateAsync({ type: "blob" });
+    const uploadTimestamp = new Date().toISOString();
+    let filename = generateUniqueFilename(uploadTimestamp) + ".zip";
+
+    // Save the zip file locally
+    saveAs(content, filename);
+    alert("File processed successfully.");
+
+    // Redirect to the Uploaded page
+    window.location.href = "./Uploaded";
+
+    /*
+    // Uncomment the following lines to enable server-side upload logic
+
+    // Prepare the form data
+    let formData = new FormData();
+    formData.append("file", content, filename);
+
+    // Specify your server upload endpoint URL here
+    const uploadUrl = "SERVER_ENDPOINT_URL";
+
+    // Use fetch API to upload the zip file
+    const response = await fetch(uploadUrl, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Server responded with an error during file upload");
+    }
+
+    // You can process the response from your server here
+    const result = await response.json(); // Adjust according to your server's response format
+    console.log("Server response:", result);
+    alert("File uploaded to server successfully.");
+    */
+  } catch (error) {
+    console.error("Error during file processing:", error);
+    alert("Failed to process file.");
+  }
+
+  setIsLoading(false); // Hide loading indicator
+};
+
+// Function to generate a unique filename
+const generateUniqueFilename = (uploadTimestamp) => {
+  let filename = uploadTimestamp.replace(/:/g, "-").replace(/\s/g, "_");
+  return filename;
+};
+
   return (
-    <div className="upload-container-uploadbox" /*style={uploadContainerStyle}*/>
+    <div className="upload-container-uploadbox">
+      {isLoading && <div className="loading-overlay">Uploading...</div>}
       {selectedImage && (
         <ImageModal
           imageUrl={selectedImage.url}
@@ -457,7 +534,13 @@ function Upload() {
               Total Size:{" "}
               <span className="total-size-color">{calculateTotalSize()}</span>
             </div>
-            <button className="dummy-upload-files" onClick={dummyUploadFiles}>Upload</button>
+            <button
+              onClick={handleUpload}
+              disabled={files.length === 0 || isLoading}
+              className="dummy-upload-files"
+            >
+              Upload
+            </button>
           </div>
         </>
       )}
