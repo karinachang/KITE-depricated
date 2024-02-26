@@ -89,6 +89,11 @@
   background-color: transparent;
 }
 
+.file-status-bar:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .file-info {
   display: flex;
   align-items: center;
@@ -161,32 +166,45 @@ button {
   font-weight: bold;
 }
 
+.setting select,
+.setting input[type="text"],
+.setting input[type="password"] 
+:hover{
+  outline: none;
+}
+
 .setting button {
   padding: 1vh 2vh;
   margin-top: 1vh;
 }
 
 .password-container {
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
+  vertical-align: center;
+  align-items: center;
   width: 11vw;
+}
+
+/* Pointer cursor and no ability to double-click highlight the symbols (checkbox and eye) */
+.password-container > i :hover {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.symbol {
+  display: inline-flex;
+  vertical-align: -16px !important;
 }
 
 .password-input {
   font-size: 14px;
+  margin: 0px 4px;
 }
 
 .password-input:focus {
   outline: none;
-}
-
-.peek-button {
-  height: 30px;
-  width: 40px;
-  background-color: transparent;
-  border: none;
-  margin-bottom: 5px;
-  text-align: center;
 }
 
 .delete-button {

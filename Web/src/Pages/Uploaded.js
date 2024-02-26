@@ -25,13 +25,11 @@ const Uploaded = () => {
 
   const copyCodeToClipboard = () => {
     navigator.clipboard.writeText(code);
-    alert("Code copied to clipboard!");
   };
 
   const copyLinkToClipboard = () => {
     const baseUrl = window.location.origin;
     navigator.clipboard.writeText(`${baseUrl}/${code}`);
-    alert("Link copied to clipboard!");
   };
   
   const getLink = () => {
@@ -44,12 +42,6 @@ const Uploaded = () => {
         <a href="./home" className="kite-link">
           KITE
         </a>
-        <button
-          onClick={() => (window.location.href = "./upload")}
-          className="Upload-button"
-        >
-          Upload
-        </button>
       </header>
       
       {!uploadComplete && (

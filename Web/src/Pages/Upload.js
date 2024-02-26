@@ -7,7 +7,7 @@ function Upload() {
   const [dragActive, setDragActive] = useState(false);
   const [maxDownloads, setMaxDownloads] = useState("none");
   const [timeToLive, setTimeToLive] = useState("24 Hours");
-  const [security, setSecurity] = useState("None");
+  const [havePassword, setHavePassword] = useState(false);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -297,21 +297,7 @@ function Upload() {
     };
   };
 
-  const formatFileName = (name) => {
-    const extension = name.split(".").pop();
-    const baseName = name.substring(0, name.lastIndexOf("."));
-    const truncatedBaseName =
-      baseName.length > 8 ? baseName.substring(0, 8) + "..." : baseName;
-    return `${truncatedBaseName}.${extension}`;
-  };
-
   const dummyUploadFiles = () => {
-    // Check if the password security option is selected and no password is entered
-    if (security === "Password" && password === "") {
-      alert("Please enter a password to upload the file(s).");
-      return; // Prevent further execution of the function
-    }
-
     // Send https request to cloud function, runs BucketUpload2
     fetch("https://us-central1-kite-408522.cloudfunctions.net/BucketUpload2");
 
@@ -358,39 +344,13 @@ function Upload() {
       </div>
       <div className="setting">
         <label>Password</label>
-        <div>
-          <input
-            type="radio"
-            id="none"
-            name="security"
-            value="None"
-            checked={security === "None"}
-            onChange={() => setSecurity("None")}
-          />
-          <label htmlFor="none">None</label>
-          <input
-            type="radio"
-            id="password"
-            name="security"
-            value="Password"
-            checked={security === "Password"}
-            onChange={() => setSecurity("Password")}
-          />
-          <label htmlFor="password">Password</label>
-          {security === "Password" && (
-            <div className="password-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="password-input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button className="peek-button" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <span class="material-symbols-outlined">visibility</span> : <span class="material-symbols-outlined">visibility_off</span>}
-              </button>
-            </div>
-          )}
-        </div>
+          <div className="password-container">
+            <i onClick={() => setHavePassword(!havePassword)}>{havePassword ? <span class="symbol material-symbols-outlined">check_box</span> : <span class="symbol material-symbols-outlined">check_box_outline_blank</span>}</i>
+            {havePassword && (<>
+              <input type={showPassword ? "text" : "password"} className="password-input" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <i onClick={() => setShowPassword(!showPassword)}>{showPassword ? <span class="symbol material-symbols-outlined">visibility</span> : <span class="symbol material-symbols-outlined">visibility_off</span>}</i>
+            </>)}
+          </div>
       </div>
     </div>
   );
@@ -414,20 +374,6 @@ function Upload() {
       }, 2000);
     }
   };
-
-  /*
-  const uploadContainerStyle = {
-    minWidth: files.length > 0 ? "80vh" : "0vh",
-    backgroundColor: files.length > 0 ? "#fafffd" : "transparent",
-    boxShadow: files.length > 0 ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "none",
-  };
-  */
-
-  /*
-  const dropZoneStyle = {
-    padding: files.length > 0 ? "3vh" : "7vh", // Change padding based on files array
-  };
-  */
 
   return (
     <div className="upload-container-uploadbox" /*style={uploadContainerStyle}*/>
@@ -473,21 +419,12 @@ function Upload() {
           <div>
             <div className="file-display-container">
               {files.map((file, index) => (
-                <div className="file-status-bar" key={index}>
-                  <button
-                    type="button"
-                    onClick={() => deleteFile(index)}
-                    className="delete-button"
-                    aria-label="Delete file"
-                  >
-                    X
-                  </button>
+                <div className="file-status-bar" key={index} onClick={() => openImageModal(file)}>
                   {file.previewURL && (
                     <img
                       src={file.previewURL}
                       alt="Preview"
                       style={{ width: "50px", height: "50px" }}
-                      onClick={() => openImageModal(file)}
                       onError={(e) => {
                         e.target.src =
                           window.location.origin + "/images/FILE.png"; // Fallback to default image on error
@@ -495,11 +432,17 @@ function Upload() {
                     />
                   )}
                   <div className="file-info">
-                    <span className="file-name" title={file.name}>
-                      {formatFileName(file.name)}
-                    </span>
+                    <span className="file-name" title={file.name}>{file.name}</span>
                     <span className="file-size">({file.size})</span>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => deleteFile(index)}
+                    className="delete-button"
+                    aria-label="Delete file"
+                  >
+                    <span class="material-symbols-outlined">close</span>
+                  </button>
                 </div>
               ))}
             </div>
